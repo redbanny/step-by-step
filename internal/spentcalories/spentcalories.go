@@ -76,7 +76,7 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 
 	speed := meanSpeed(stepsCount, height, trainingDuration)
 	distance := distance(stepsCount, height)
-	result = fmt.Sprintf("Тип тренировки: %s\nДлительность: %.2fч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f",
+	result = fmt.Sprintf("Тип тренировки: %s\nДлительность: %.2f ч.\nДистанция: %.2f км.\nСкорость: %.2f км/ч\nСожгли калорий: %.2f\n",
 		trainingType, trainingDuration.Hours(), distance, speed, kkalCount)
 
 	return result, nil
