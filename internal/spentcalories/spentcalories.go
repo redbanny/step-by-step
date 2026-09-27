@@ -25,12 +25,12 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 	}
 
 	stepsCount, err := strconv.Atoi(splitData[0])
-	if err != nil {
+	if err != nil || stepsCount <= 0 {
 		return 0, "", 0, errors.New("Incorrect steps value")
 	}
 
 	trainingDuration, err := time.ParseDuration(splitData[2])
-	if err != nil {
+	if err != nil || trainingDuration <= 0 {
 		return 0, "", 0, errors.New("Incorrect durations value")
 	}
 
@@ -68,7 +68,7 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 	case "бег":
 		kkalCount, err = RunningSpentCalories(stepsCount, weight, height, trainingDuration)
 	default:
-		err = errors.New("unknown type of training")
+		err = errors.New("неизвестный тип тренировки")
 	}
 	if err != nil {
 		return result, err

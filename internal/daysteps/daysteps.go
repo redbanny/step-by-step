@@ -25,12 +25,12 @@ func parsePackage(data string) (int, time.Duration, error) {
 	}
 
 	stepsCount, err := strconv.Atoi(splitData[0])
-	if err != nil {
+	if err != nil || stepsCount <= 0 {
 		return 0, 0, errors.New("Incorrect steps value")
 	}
 
 	trainingDuration, err := time.ParseDuration(splitData[1])
-	if err != nil {
+	if err != nil || trainingDuration <= 0 {
 		return 0, 0, errors.New("Incorrect durations value")
 	}
 
@@ -46,7 +46,7 @@ func DayActionInfo(data string, weight, height float64) string {
 		return result
 	}
 
-	if stepsCount < 0 {
+	if stepsCount <= 0 {
 		return result
 	}
 
@@ -56,7 +56,7 @@ func DayActionInfo(data string, weight, height float64) string {
 	if err != nil {
 		return result
 	}
-	result = fmt.Sprintf("Количество шагов: %d.\nДистанция составила %.2f км.\nВы сожгли %.2f ккал.", stepsCount, distance, walkingCaloriesCount)
+	result = fmt.Sprintf("Количество шагов: %d.\nДистанция составила %.2f км.\nВы сожгли %.2f ккал.\n", stepsCount, distance, walkingCaloriesCount)
 
 	return result
 }
